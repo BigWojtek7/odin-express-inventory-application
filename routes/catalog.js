@@ -6,7 +6,7 @@ const category_controller = require('../controllers/categoryController');
 
 /// ITEM ROUTES ///
 
-// GET catalog Home Page
+// GET category Home Page
 router.get('/', item_controller.index);
 
 // Create item on get
@@ -33,28 +33,30 @@ router.get('/item/:id', item_controller.item_detail);
 // GET request for list of all item items.
 router.get('/items', item_controller.item_list);
 
-/// CATALOG ROUTES ///
+/// category ROUTES ///
 
-// Get request for creating catalog
-router.get('/catalog/create', category_controller.category_create_get);
+// Get request for creating category
+router.get('/category/create', category_controller.category_create_get);
 
-// Post for create catalog
-router.post('/catalog/create', category_controller.category_create_post);
+// Post for create category
+router.post('/category/create', category_controller.category_create_post);
 
-// GET request to delete Genre.
-router.get('/genre/:id/delete', genre_controller.genre_delete_get);
+// GET request to delete category.
+router.get('/category/:id/delete', category_controller.category_delete_get);
 
-// POST request to delete Genre.
-router.post('/genre/:id/delete', genre_controller.genre_delete_post);
+// POST request to delete category.
+router.post('/category/:id/delete', category_controller.category_delete_post);
 
-// GET request to update Genre.
-router.get('/genre/:id/update', genre_controller.genre_update_get);
+// GET request to update category.
+router.get('/category/:id/update', category_controller.category_update_get);
 
-// POST request to update Genre.
-router.post('/genre/:id/update', genre_controller.genre_update_post);
+// POST request to update category.
+router.post('/category/:id/update', category_controller.category_update_post);
 
-// GET request for one Genre.
-router.get('/genre/:id', genre_controller.genre_detail);
+// GET request for one category.
+router.get('/category/:id', category_controller.category_detail);
 
-// GET request for list of all Genre.
-router.get('/genres', genre_controller.genre_list);
+// GET request for list of all category.
+router.get('/categorys', category_controller.category_list);
+
+module.exports = router;

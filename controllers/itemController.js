@@ -4,8 +4,22 @@ const Category = require('../models/category');
 const asyncHandler = require('express-async-handler');
 
 exports.index = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: Site Home Page');
+  // Get details of items,  category counts (in parallel)
+  const [
+    numItems,
+    numCategorys,
+  ] = await Promise.all([
+    Item.countDocuments({}).exec(),
+    Category.countDocuments({}).exec(),
+  ]);
+
+  res.render("index", {
+    title: "Local Library Home",
+    item_count: numItems,
+    category_count: numCategorys,
+  });
 });
+
 
 // Display list of all items.
 exports.item_list = asyncHandler( async (req, res, next) => {
