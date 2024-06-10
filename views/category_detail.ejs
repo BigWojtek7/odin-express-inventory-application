@@ -1,0 +1,8 @@
+<h1>Category: <%= category.name%></h1>
+<% if (category_items.length) { %>
+  <ul>
+  <% category_items.forEach( item => { %>
+    <li><a href="<%=item.url%>"><%=item.name%></a> (<%=item.description%>)</li>
+  <%});%>
+  </ul>
+<% } %>
