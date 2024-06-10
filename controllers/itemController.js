@@ -13,7 +13,7 @@ exports.index = asyncHandler(async (req, res, next) => {
   ]);
 
   res.render('index', {
-    title: 'Local Library Home',
+    title: 'Computer Online Shop',
     item_count: numItems,
     category_count: numCategorys,
   });
