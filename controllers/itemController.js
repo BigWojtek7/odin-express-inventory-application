@@ -1,6 +1,8 @@
 const Item = require('../models/item');
 const Category = require('../models/category');
 
+const { body, validationResult } = require('express-validator');
+
 const asyncHandler = require('express-async-handler');
 
 exports.index = asyncHandler(async (req, res, next) => {
@@ -29,7 +31,7 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific item.
 exports.item_detail = asyncHandler(async (req, res, next) => {
-  // Get details of books, book instances for specific book
+  // Get details of items, item instances for specific item
   const item = await Item.findById(req.params.id).populate('category').exec();
 
   if (item === null) {
@@ -47,7 +49,13 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 
 // Display item create form on GET.
 exports.item_create_get = asyncHandler(async (req, res, next) => {
-  res.send('NOT IMPLEMENTED: item create GET');
+  // Get all authors and genres, which we can use for adding to our item.
+  const allCategories = await Category.find().sort({ name: 1 }).exec();
+
+  res.render('item_form', {
+    title: 'Create Item',
+    categories: allCategories,
+  });
 });
 
 // Handle item create on POST.
